@@ -1,0 +1,16 @@
+<h1>Login</h1>
+<%= form_tag :action => 'verify' do %>
+	<table>
+		<tr>
+			<th><p>Username:<%= text_field_tag :username %></p></td>
+		</tr>
+		<tr>
+			<th><p>Password:<%= password_field_tag :password %></p></td>
+		</tr>
+				
+	</table>
+	<p><%= submit_tag 'login' %></p>
+	<hr>
+	<%= link_to "Register a new account", :action => 'register' %>
+	<hr>
+<% end %>

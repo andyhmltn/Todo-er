@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo</title>
+  <%= stylesheet_link_tag :all %>
+  <link href='http://fonts.googleapis.com/css?family=Lobster+Two:400,700' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+	<%= flash[:notice] %>
+	</div>
+<% end %>
+<%= yield %>
+
+</body>
+</html>

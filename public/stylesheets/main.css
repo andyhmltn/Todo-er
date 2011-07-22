@@ -1,0 +1,39 @@
+h1 {
+	font-family: 'Lobster Two', cursive;
+}
+
+body {
+	font-family: Helvetica;
+	width: 500px;
+	margin: 50px auto;
+}
+
+.notice {
+	width: 100%;
+	background-color: #1BE070;
+	padding: 10px;
+	text-align: center;
+	font-size: 10px;
+}
+
+a, a:visited {
+	color: #4A4A4A;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #0095FF;
+}
+
+.links {
+	font-size: 10px;
+}
+
+.complete {
+	font-size: 10px;
+	text-decoration: underline;
+}
+
+.completed {
+	color: #4A4A4A;
+}

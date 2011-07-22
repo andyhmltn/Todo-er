@@ -1,0 +1,19 @@
+<%= form_for @list do |form| %>
+	<table>
+		<tr>
+			<th><p>Name:</p></th>
+			<td><p> <%= form.text_field :name %></p></td>
+		</tr>
+		
+		<tr>
+			<th><p>Description:</p></th>
+			<td><p> <%= form.text_field :description %></p></td>
+		</tr>
+		
+		<tr>
+			<td><p><%= form.submit 'create' %></p></td>
+		</tr>
+		
+	</table>
+	<%= link_to "Back", :action => 'index' %>
+<% end %>
