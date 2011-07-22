@@ -21,7 +21,7 @@ class ListsController < ApplicationController
   def logout
     session[:user_id] = nil
     session[:username] = nil
-    flash[:notice] = "Thanks for visiing!"
+    flash[:notice] = "Thanks for visiting!"
     redirect_to :action => 'login'
   end
   
