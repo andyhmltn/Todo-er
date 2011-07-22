@@ -3,6 +3,8 @@ Todo::Application.routes.draw do
 
   resources :lists
   
+  root :to => 'lists#login'
+  
   match 'lists/:list_id/tasks/:id/complete' => 'tasks#complete', :as => :complete_task
   match 'login' => 'lists#login'
   match 'logout' => 'lists#logout'
