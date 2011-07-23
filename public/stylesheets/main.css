@@ -6,8 +6,13 @@ body {
 	font-family: Helvetica;
 	width: 500px;
 	margin: 50px auto;
+	background-color: #DEDEDE;
+	text-shadow: 0 1px #FFF
 }
 
+input {
+	margin-left: 10px;
+}
 .notice {
 	width: 100%;
 	background-color: #1BE070;
