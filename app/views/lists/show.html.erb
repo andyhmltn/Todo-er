@@ -1,3 +1,6 @@
+
+<%= link_to "Back to home", :action => 'index' %>
+<hr>
 <h1><%= @list.name.downcase %></h1>
 <p><%= @list.description %></p>
 
@@ -19,5 +22,3 @@
 <%= form_for @task do |form| %>
 <p><i>Create a new task:   </i><%= form.hidden_field :list_id, :value => @list.id %><%= form.text_field :description %><%= form.submit "create" %></p>
 <% end %>
-<hr>
-<%= link_to "Back to home", :action => 'index' %>
