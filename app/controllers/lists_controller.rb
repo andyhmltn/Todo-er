@@ -3,6 +3,10 @@ class ListsController < ApplicationController
   before_filter :confirm_logged_in, :except => [:login, :verify, :logout, :register, :create_user]
   
   def login
+    if !session[:user_id].blank?
+      redirect_to :action => 'index'
+      return false
+    end
     @user = User.new
   end
   
@@ -72,7 +76,18 @@ class ListsController < ApplicationController
     end
   end
   
+  def register
+    if !session[:user_id].blank?
+      redirect_to :action => 'index'
+      return false
+    end
+  end
+  
   def create_user
+    if !session[:user_id].blank?
+      redirect_to :action => 'index'
+      return false
+    end
     if User.register(params[:username], params[:password])
       flash[:notice] = "Registered succesfully"
       redirect_to :action => 'login'
