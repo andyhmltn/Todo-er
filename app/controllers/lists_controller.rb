@@ -72,9 +72,6 @@ class ListsController < ApplicationController
     end
   end
   
-  def register
-  end
-  
   def create_user
     if User.register(params[:username], params[:password])
       flash[:notice] = "Registered succesfully"
