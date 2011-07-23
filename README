@@ -8,5 +8,6 @@ LANGUAGE/FRAMEWORK: ruby/rails
 There's not much to do. Just:
 
 'rake db:migrate'
+'bundle install'
 
 Enjoy!
