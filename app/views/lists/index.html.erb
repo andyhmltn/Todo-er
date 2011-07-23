@@ -1,13 +1,9 @@
 <h1> todo list </h1>
 
-<% if @lists.empty? %>
-	<p style="font-size: 12px; margin-bottom: 5px;"><i>Sorry you haven't created any lists yet.<i></p>
-<% else %>
 <% @lists.each do |list| %>
 	<h2><%= link_to list.name, :action => 'show', :id => list.id %></h2>
 	<p><%= list.description %></p>
 	<p class="links"><%= link_to "Edit", :action => 'edit', :id => list.id %> | <%= link_to "Delete", :id => list.id, :action => 'delete'%></p>
-<% end %>
 <% end %>
 
 <hr>
