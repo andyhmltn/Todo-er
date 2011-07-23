@@ -13,7 +13,7 @@ class ListsController < ApplicationController
       session[:username] = @user.username
       redirect_to :action => 'index'
     else
-      flash[:notice] = "Invalid username/password combination"
+      flash[:notice] = "Invalid username and/or password"
       redirect_to :action => 'login'
     end
   end
