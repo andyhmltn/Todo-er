@@ -27,7 +27,7 @@ class ListsController < ApplicationController
   
   def index
     @user = User.find(session[:user_id])
-    @lists = @user.lists.all
+    @lists = @user.lists.find(:all, :order => "created_at DESC")
   end
   
   def new
@@ -41,8 +41,8 @@ class ListsController < ApplicationController
       flash[:notice] = "List created."
       redirect_to(:action => "show", :id => @list.id)
     else
-      flash[:notice] = "There was an error"
-      redirect_to(:action => "index")
+      flash[:notice] = "There was an error with that request. Please try again"
+      redirect_to(:action => "new")
     end
   end
   
