@@ -40,8 +40,8 @@ class ListsController < ApplicationController
   
   def create
     @user = User.find(session[:user_id])
-    @list = @user.lists.new(params[:list])
-    if @list.save
+    @list = @user.lists.create(params[:list])
+    if @list
       flash[:notice] = "List created."
       redirect_to(:action => "show", :id => @list.id)
     else
@@ -60,9 +60,16 @@ class ListsController < ApplicationController
   end
   
   def delete
-    User.find(session[:user_id]).lists.destroy(params[:id])
-    flash[:notice] = "List deleted"
-    redirect_to :action => 'index'
+    if Collaborator.where(:list_id => params[:id]).count('id') > 1
+      @list = List.find(params[:id])
+      @list.users.delete(User.find(session[:user_id]))
+      flash[:notice] = "You removed yourself from that group list"
+      redirect_to :action => 'index'
+    else
+      User.find(session[:user_id]).lists.destroy(params[:id])
+      flash[:notice] = "List deleted"
+      redirect_to :action => 'index'
+    end
   end
   
   def update
@@ -88,12 +95,36 @@ class ListsController < ApplicationController
       redirect_to :action => 'index'
       return false
     end
-    if User.register(params[:username], params[:password])
-      flash[:notice] = "Registered succesfully"
-      redirect_to :action => 'login'
+    @user = User.find_by_username(params[:username])
+    if @user == nil
+      if User.register(params[:username], params[:password])
+        flash[:notice] = "Registered succesfully"
+        redirect_to :action => 'login'
+      else
+        flash[:notice] = "We're sorry. There was an error with that request. Please try again."
+        redirect_to :action => 'register'
+      end
     else
-      flash[:notice] = "We're sorry. There was an error with that request. Please try again."
+      flash[:notice] = "That username has already been taken. Sorry chap. Try another one"
       redirect_to :action => 'register'
     end
   end
+  
+  def create_collaborator
+    @collaborator = User.find_by_username(params[:username])
+    if @collaborator == nil
+      flash[:notice] = "User #{params[:username]} does not appear to exist. Please check the name and retry"
+      redirect_to :action => 'show', :id => params[:list_id]
+    else
+      query = @collaborator.lists << List.find(params[:list_id])
+      if query
+        flash[:notice] = "Collaborator added"
+        redirect_to :action => 'show', :id => params[:list_id]
+      else
+        flash[:notice] = "Collaborator not added"
+        redirect_to :action => 'show', :id => params[:list_id]
+      end
+    end
+  end
+  
 end

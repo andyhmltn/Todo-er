@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :lists
+  has_many :collaborators
+  has_many :lists, :through => :collaborators
   
   validates_presence_of :username
   

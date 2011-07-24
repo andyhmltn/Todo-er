@@ -44,3 +44,9 @@ a:hover {
 .completed {
 	color: #4A4A4A;
 }
+
+.collabs {
+	color:#788920;
+	font-weight: bold;
+	font-size: 12px;
+}

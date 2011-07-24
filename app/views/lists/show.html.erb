@@ -18,7 +18,12 @@
 	<% end %>
 </ul>
 
+<p class="collabs">Collaborators:  <% @list.users.each do |c|%><i><%= c.username == session[:username] ? 'You' : c.username.capitalize %>,</i>    <% end %></p>
 <hr>
 <%= form_for @task do |form| %>
 <p><i>Create a new task:   </i><%= form.hidden_field :list_id, :value => @list.id %><%= form.text_field :description %><%= form.submit "create" %></p>
+<% end %>
+
+<%= form_tag :action => "create_collaborator" do |f| %>
+<p><i>Add a collaborator:   </i><%= hidden_field_tag :list_id, @list.id %><%= text_field_tag :username %><%= submit_tag "create" %></p>
 <% end %>
